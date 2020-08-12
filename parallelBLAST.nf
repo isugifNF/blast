@@ -50,6 +50,8 @@ Channel
 process software_check {
   label 'software_check'
 
+  publishDir params.outdir
+
   output:
     path 'software_check.txt'
 
@@ -65,6 +67,8 @@ process software_check {
   parallel --version >> software_check.txt
   """
 }
+
+
 
 if (params.genome) {
 
