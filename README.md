@@ -1,4 +1,4 @@
-#isugifNF/blast
+# isugifNF/blast
 
 [Genome Informatics Facility](https://gif.biotech.iastate.edu/) | [![Nextflow](https://img.shields.io/badge/nextflow-%E2%89%A519.10.0-brightgreen.svg)](https://www.nextflow.io/)
 
