@@ -9,8 +9,8 @@
      log.info """
       Usage:
       The typical command for running the pipeline is as follows:
-      nextflow run parallelBLAST.nf -query QUERY.fasta --genome GENOME.fasta -profile local
-      nextflow run parallelBLAST.nf -query QUERY.fasta --dbDir "blastDatabaseDirectory" -dbName "blastPrefixName" -profile local
+      nextflow run parallelBLAST.nf --query QUERY.fasta --genome GENOME.fasta -profile local
+      nextflow run parallelBLAST.nf --query QUERY.fasta --dbDir "blastDatabaseDirectory" --dbName "blastPrefixName" -profile local
 
       Mandatory arguments:
        --query                        Query fasta file of sequences you wish to BLAST
