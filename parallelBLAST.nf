@@ -65,8 +65,6 @@ process software_check {
   echo "\nmakeblastdb -version" >> software_check.txt
   makeblastdb -version >> software_check.txt
 
-  echo "\nparallel --version" >> software_check.txt
-  parallel --version >> software_check.txt
   """
 }
 
