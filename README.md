@@ -1,5 +1,17 @@
 # isugifNF/blast
 
+```
+----------------------------------------------------
+                                    \\---------//       
+      ___  ___        _   ___  ___    \\-----//        
+       |  (___  |  | / _   |   |_       \-//         
+      _|_  ___) |__| \_/  _|_  |        // \        
+                                      //-----\\       
+                                    //---------\\       
+      isugifNF/blast  v1.0.0       
+    ----------------------------------------------------
+```
+
 [Genome Informatics Facility](https://gif.biotech.iastate.edu/) | [![Nextflow](https://img.shields.io/badge/nextflow-%E2%89%A519.10.0-brightgreen.svg)](https://www.nextflow.io/)
 
 ---
@@ -23,13 +35,10 @@ nextflow run isugifNF/blast --help
 <details><summary>see usage statement</summary>
 
 ```
-N E X T F L O W  ~  version 20.07.1
-Launching `isugifNF/blast` [cranky_brattain] - revision: 11f393fd09 [master]
-NOTE: Your local project version looks outdated - a different revision is available in the remote repository [b22ed9c32d]
 Usage:
       The typical command for running the pipeline is as follows:
-      nextflow run parallelBLAST.nf -query QUERY.fasta --genome GENOME.fasta -profile local
-      nextflow run parallelBLAST.nf -query QUERY.fasta --dbDir "blastDatabaseDirectory" -dbName "blastPrefixName" -profile local
+      nextflow run parallelBLAST.nf --query QUERY.fasta --genome GENOME.fasta -profile local
+      nextflow run parallelBLAST.nf --query QUERY.fasta --dbDir "blastDatabaseDirectory" --dbName "blastPrefixName" -profile local
 
       Mandatory arguments:
        --query                        Query fasta file of sequences you wish to BLAST
@@ -68,9 +77,27 @@ ls -ltr nextflow
 #> -rwx--x--x  1 username  staff    15K Aug 12 12:47 nextflow
 ```
 
-Currently docker and singularity enabled **isugifNF/blast** is under development so you will need to have a local [install of BLAST](https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/). Select the appropriate installer if you are windows (`.exe`), linux (`*linux.tar.gz`), or MacOS (`*.dmg`). There are a few different ways to install BLAST locally, including brew, ports, and conda.
+The pipeline **isugifNF/blast** can be run using singularity/docker containers or with a local [install of BLAST](https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/). For a local install, select the appropriate installer if you are on windows (`*.exe`), linux (`*linux.tar.gz`), or MacOS (`*.dmg`). There are a few different ways to install BLAST locally, including brew, ports, and conda.
 
-<!--
+```
+# test run using locally installed blast
+nextflow run parallelBLAST.nf -profile temp
+
+# test run using containers (docker/singularity)
+nextflow run parallelBLAST.nf -profile test,docker
+nextflow run parallelBLAST.nf -profile test,singularity
+```
+
+Docker/singularity runs will take a few minutes since it needs to download the ncbi/blast container. Subsequent runs will be faster.
+
+### Credits
+
+These scripts were originally written for use on Ceres and Condo HPCC by Andrew Severin ([@isugif](https://github.com/isugif)), Siva Chudalayandi ([@Sivanandan](https://github.com/Sivanandan)), and Jennifer Chang ([@j23414](https://github.com/j23414))
+
+
+<!-- 
+
+### Scrap past this
 
 ### Dependencies
 
@@ -119,15 +146,7 @@ ls -ltr nextflow
 ```
 nextflow run isugifNF/blast --help
 ```
--->
 
-### Credits
-
-These scripts were originally written for use on Ceres and Condo HPCC by Andrew Severin ([@isugif](https://github.com/isugif)), Siva Chudalayandi ([@Sivanandan](https://github.com/Sivanandan)), and Jennifer Chang ([@j23414](https://github.com/j23414))
-
-<!--
-
-### Scrap past this
 <details><summary>Install Nextflow on Linux</summary>
 
 ```
@@ -203,7 +222,6 @@ ls -ltr nextflow
 #> total 32
 #> -rwx--x--x  1 jenchang  staff    15K Aug 12 12:47 nextflow
 ```
-
 
 </details>
 
