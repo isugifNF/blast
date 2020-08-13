@@ -81,11 +81,11 @@ The pipeline **isugifNF/blast** can be run using singularity/docker containers o
 
 ```
 # test run using locally installed blast
-nextflow run parallelBLAST.nf -profile temp
+nextflow run isugifNF/blast -profile temp
 
 # test run using containers (docker/singularity)
-nextflow run parallelBLAST.nf -profile test,docker
-nextflow run parallelBLAST.nf -profile test,singularity
+nextflow run isugifNF/blast -profile test,docker
+nextflow run isugifNF/blast -profile test,singularity
 ```
 
 Docker/singularity runs will take a few minutes since it needs to download the ncbi/blast container. Subsequent runs will be faster.
