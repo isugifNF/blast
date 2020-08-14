@@ -99,7 +99,7 @@ if (params.genome) {
 } else {  // this else statement will automatically create the flag channel done_ch which is now required for runBlast process to proceed
   done_ch = Channel.from(true) // this is probably redundant
   dbName_ch = Channel.from(params.dbName)
-
+  dbDir_ch = Channel.fromPath(params.dbDir)
 }
 
 process runBlast {
@@ -108,6 +108,7 @@ process runBlast {
   input:
   path query from Query_chunks
   val flag from done_ch
+  path dbDir from dbDir_ch
   val dbName from dbName_ch
 
   output:
@@ -115,9 +116,8 @@ process runBlast {
 
   script:
   """
-  echo "${params.app}  -num_threads=${params.threads} -db $params.dbDir/$params.dbName -query $query -outfmt $params.outfmt $params.options -out $params.outfileName" > blast.log
-
-  ${params.app}  -num_threads=${params.threads} -db ${params.dbDir}/$dbName -query $query -outfmt $params.outfmt $params.options -out $params.outfileName
+  echo "${params.app}  -num_threads=${params.threads} -db $dbDir/dbName -query $query -outfmt $params.outfmt $params.options -out $params.outfileName" > blast.log
+  ${params.app}  -num_threads ${params.threads} -db $dbDir/$dbName -query $query -outfmt $params.outfmt $params.options -out $params.outfileName
 
   """
 
