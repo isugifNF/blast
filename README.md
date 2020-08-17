@@ -81,7 +81,7 @@ The pipeline **isugifNF/blast** can be run using singularity/docker containers o
 
 ```
 # test run using locally installed blast
-nextflow run isugifNF/blast -profile temp
+nextflow run isugifNF/blast -profile test
 
 # test run using containers (docker/singularity)
 nextflow run isugifNF/blast -profile test,docker
