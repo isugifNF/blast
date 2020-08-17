@@ -107,17 +107,17 @@ process runBlast {
 
   input:
   path query from Query_chunks
-  val flag from done_ch
-  path dbDir from dbDir_ch
-  val dbName from dbName_ch
+//  val flag from done_ch
+//  path dbDir from dbDir_ch
+//  val dbName from dbName_ch
 
   output:
   path params.outfileName into blast_output
 
   script:
   """
-  echo "${params.app}  -num_threads=${params.threads} -db $dbDir/dbName -query $query -outfmt $params.outfmt $params.options -out $params.outfileName" > blast.log
-  ${params.app}  -num_threads ${params.threads} -db $dbDir/$dbName -query $query -outfmt $params.outfmt $params.options -out $params.outfileName
+  echo "${params.app}  -num_threads ${params.threads} -db $params.dbDir/$params.dbName -query $query -outfmt $params.outfmt $params.options -out $params.outfileName" > blast.log
+  ${params.app}  -num_threads ${params.threads} -db $params.dbDir/$params.dbName -query $query -outfmt $params.outfmt $params.options -out $params.outfileName
 
   """
 
