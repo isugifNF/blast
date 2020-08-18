@@ -90,7 +90,7 @@ if (params.genome) {
     mkdir DB
     makeblastdb -in ${params.genome} -dbtype 'nucl' -out $params.dbDir/${outname.baseName}
     makeblastdb -in ${params.genome} -dbtype 'prot' -out $params.dbDir/${outname.baseName}
-    exit(0)
+    
     """
 
     }
