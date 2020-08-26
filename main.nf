@@ -79,7 +79,7 @@ if (params.genome) {
   process runMakeBlastDB {
     label 'blast'
 
-    publishDir "${params.outdir}", mode: 'copy', pattern: '$name'
+  //  publishDir "${params.outdir}", mode: 'copy', pattern: '$name'
 
     input:
     set val(name), val(dbDir), file(FILE) from genomefile
