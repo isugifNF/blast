@@ -72,32 +72,32 @@ process software_check {
 
 if (params.genome) {
 
-  genomefile = Channel.fromPath( params.genome )  // in order to have the outfilename be from the file name that is placed in the params.genome variable it has to be from a channel.
+  genomefile = Channel
+                .fromPath(params.genome)
+                .map { file -> tuple(file.simpleName, file.parent, file) } //requires the file part of this tuple for some reason even though I don't use it downstream
 
   process runMakeBlastDB {
     label 'blast'
 
+    publishDir "${params.outdir}", mode: 'copy', pattern: '$name'
+
     input:
-    file outname from genomefile  // grabbing the params.genome filename from the genomefile name created above. Below you will see the use of baseName to grab just the basename without the .fasta
+    set val(name), val(dbDir), file(FILE) from genomefile
 
     output:
-    val true into done_ch  // may be redundant
-    val params.genome.take(params.genome.lastIndexOf('.')) into dbName_ch
-
+    // val params.genome.take(params.genome.lastIndexOf('.')) into dbName_ch
+    val name into dbName_ch
+    val dbDir into dbDir_ch
 
     script:
     """
-    mkdir DB
-    makeblastdb -in ${params.genome} -dbtype 'nucl' -out $params.dbDir/${outname.baseName}
-    makeblastdb -in ${params.genome} -dbtype 'prot' -out $params.dbDir/${outname.baseName}
-    
+    makeblastdb -in ${params.genome} -dbtype 'nucl' -out $dbDir/$name
+    makeblastdb -in ${params.genome} -dbtype 'prot' -out $dbDir/$name
+
     """
 
     }
-
-
-} else {  // this else statement will automatically create the flag channel done_ch which is now required for runBlast process to proceed
-  done_ch = Channel.from(true) // this is probably redundant
+} else {
   dbName_ch = Channel.from(params.dbName)
   dbDir_ch = Channel.fromPath(params.dbDir)
 }
@@ -108,16 +108,16 @@ process runBlast {
   input:
   path query from Query_chunks
 //  val flag from done_ch
-//  path dbDir from dbDir_ch
-//  val dbName from dbName_ch
+path dbDir from dbDir_ch.val
+val dbName from dbName_ch.val
 
   output:
   path params.outfileName into blast_output
 
   script:
   """
-  echo "${params.app}  -num_threads ${params.threads} -db $params.dbDir/$params.dbName -query $query -outfmt $params.outfmt $params.options -out $params.outfileName" > blast.log
-  ${params.app}  -num_threads ${params.threads} -db $params.dbDir/$params.dbName -query $query -outfmt $params.outfmt $params.options -out $params.outfileName
+  echo "${params.app}  -num_threads ${params.threads} -db $dbDir/$dbName -query $query -outfmt $params.outfmt $params.options -out $params.outfileName" > blast.log
+  ${params.app}  -num_threads ${params.threads} -db $dbDir/$dbName -query $query -outfmt $params.outfmt $params.options -out $params.outfileName
 
   """
 
