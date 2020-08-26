@@ -30,7 +30,7 @@
        --outfileName                  Prefix name for BLAST output [blastout]
        --threads                      Number of CPUs to use during blast job [16]
        --chunkSize                    Number of fasta records to use when splitting the query fasta file
-       --app                          BLAST program to use [blastn;blastp,tblastx,blastx]
+       --app                          BLAST program to use [blastn;blastp,tblastn,blastx]
        --help                         This usage statement.
      """
  }
