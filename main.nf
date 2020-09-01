@@ -82,12 +82,12 @@ if (params.genome) {
   //  publishDir "${params.outdir}", mode: 'copy', pattern: '$name'
 
     input:
-    set val(name), val(dbDir), file(FILE) from genomefile
+    set val(name), path(dbDir), file(FILE) from genomefile
 
     output:
     // val params.genome.take(params.genome.lastIndexOf('.')) into dbName_ch
     val name into dbName_ch
-    val dbDir into dbDir_ch
+    path dbDir into dbDir_ch
 
     script:
     """
