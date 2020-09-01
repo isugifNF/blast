@@ -56,7 +56,7 @@ nextflow run parallelBLAST.nf --chunkSize 100 --dbDir "$PWD/testData/" -profile 
 
 ### GOTCHAs
   * Be sure to escape `$` ie `\$` in the awk statments or nextflow will complain
-  * `-resume` note `--resume`
+  * `-resume` not `--resume`
 
 ```
 script:
