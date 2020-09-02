@@ -92,7 +92,7 @@ if (params.genome) {
     script:
     """
     makeblastdb -in ${params.genome} -dbtype 'nucl' -out $dbDir/$name
-    makeblastdb -in ${params.genome} -dbtype 'prot' -out $dbDir/$name
+    # makeblastdb -in ${params.genome} -dbtype 'prot' -out $dbDir/$name
 
     """
 
