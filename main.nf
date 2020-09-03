@@ -31,6 +31,7 @@
        --threads                      Number of CPUs to use during blast job [16]
        --chunkSize                    Number of fasta records to use when splitting the query fasta file
        --app                          BLAST program to use [blastn;blastp,tblastn,blastx]
+       --queueSize                    Maximum number of jobs to be queued [18]
        --help                         This usage statement.
      """
  }
