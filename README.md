@@ -86,6 +86,9 @@ nextflow run isugifNF/blast -profile test
 # test run using containers (docker/singularity)
 nextflow run isugifNF/blast -profile test,docker
 nextflow run isugifNF/blast -profile test,singularity
+
+# test run on Ceres HPC
+nextflow run isugifNF/blast -profile test,ceres
 ```
 
 Docker/singularity runs will take a few minutes since it needs to download the ncbi/blast container. Subsequent runs will be faster.
