@@ -28,7 +28,7 @@
        --outfmt                       Output format ['6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qlen slen frames salltitles qcovs']
        --options                      Additional options for BLAST command [-evalue 1e-3]
        --outfileName                  Prefix name for BLAST output [blastout]
-       --threads                      Number of CPUs to use during blast job [16]
+       --threads                      Number of CPUs to use during blast job [8]
        --chunkSize                    Number of fasta records to use when splitting the query fasta file
        --app                          BLAST program to use [blastn;blastp,tblastn,blastx]
        --queueSize                    Maximum number of jobs to be queued [18]
