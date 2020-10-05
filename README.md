@@ -24,7 +24,7 @@ The workflow processes many sequences from a large fasta file `--query`, splits 
 
 ### Installation and running on Ceres HPCC
 
-Nextflow is already installed on Ceres HPCC. Therefore, running **isugifNF/blast** involes (1) allocating a debug node `salloc -N 1 -p debug -t 01:00:00`, (2) loading nextflow `module load nextflow`, and (3) running the pipeline `nextflow run isugifNF/blast`. The `--help` flag prints out the usage sstatement.
+Nextflow is already installed on Ceres HPCC. Therefore, running **isugifNF/blast** involves (1) allocating a debug node `salloc -N 1 -p debug -t 01:00:00`, (2) loading nextflow `module load nextflow`, and (3) running the pipeline `nextflow run isugifNF/blast`. The `--help` flag prints out the usage statement.
 
 ```
 salloc -N 1 -p debug -t 01:00:00
@@ -98,7 +98,7 @@ Docker/singularity runs will take a few minutes since it needs to download the n
 These scripts were originally written for use on Ceres and Condo HPCC by Andrew Severin ([@isugif](https://github.com/isugif)), Siva Chudalayandi ([@Sivanandan](https://github.com/Sivanandan)), and Jennifer Chang ([@j23414](https://github.com/j23414))
 
 
-<!-- 
+<!--
 
 ### Scrap past this
 
@@ -128,7 +128,7 @@ ls -ltr nextflow
 
 </details>
 
-* Requires 
+* Requires
 
 To run **isugifNF/blast**, you will need to have nextflow installed or available. The most up-to-date instructions for installing nextflow will be at [nextflow.io](https://www.nextflow.io/).
 
@@ -180,7 +180,7 @@ ls -ltr nextflow
 
 ```
 load module nextflow
-nextflow 
+nextflow
 ```
 
 </details>
@@ -249,4 +249,3 @@ nextflow run isugifNF/blast -profile ceres \
 ls -ltr out_dir                        # to see output blast results
 ```
 -->
-
